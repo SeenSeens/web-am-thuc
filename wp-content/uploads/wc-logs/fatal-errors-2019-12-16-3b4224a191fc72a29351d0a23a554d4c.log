@@ -1,0 +1,14 @@
+2019-12-16T04:48:56+00:00 CRITICAL syntax error, unexpected end of file in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\template\template-home-2.php on line 278
+
+2019-12-16T06:59:22+00:00 CRITICAL Uncaught Error: Call to undefined function the_page() in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\woocommerce\archive-product.php:28
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-includes\template-loader.php(98): include()
+#1 C:\xampp\htdocs\cuisine\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\woocommerce\archive-product.php on line 28
+
+2019-12-16T07:32:13+00:00 CRITICAL syntax error, unexpected ',' in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\woocommerce\content-single-product.php on line 34
+
+2019-12-16T07:33:00+00:00 CRITICAL syntax error, unexpected ',' in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\woocommerce\content-single-product.php on line 34
+

@@ -1,0 +1,4 @@
+2019-12-14T09:45:30+00:00 CRITICAL syntax error, unexpected ';', expecting ']' in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\header.php on line 171
+
+2019-12-14T10:44:31+00:00 CRITICAL syntax error, unexpected '$product' (T_VARIABLE) in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\template\template-home-2.php on line 76
+
