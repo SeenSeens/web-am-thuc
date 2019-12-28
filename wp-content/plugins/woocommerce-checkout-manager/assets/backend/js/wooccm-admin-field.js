@@ -2,23 +2,17 @@
 
   var count = 0,
           timer;
+
   var is_blocked = function ($node) {
     return $node.is('.processing') || $node.parents('.processing').length;
   };
-  var block = function ($node) {
-    if (!is_blocked($node)) {
-      $node.addClass('processing').block({
-        message: null,
-        overlayCSS: {
-          background: '#fff',
-          opacity: 0.6
-        }
-      });
-    }
+  var block = function () {
+    $('#wooccm_modal').addClass('processing');
   };
-  var unblock = function ($node) {
-    $node.removeClass('processing').unblock();
+  var unblock = function () {
+    $('#wooccm_modal').removeClass('processing');
   };
+
   _.mixin({
     sortOptions: function (object) {
       return _.sortBy(object, function (o) {
@@ -32,19 +26,9 @@
       this.templates.window = wp.template('wooccm-modal-tabs');
     },
     render: function () {
+      this.model.attributes.panel = 'general';
       this.$el.html(this.templates.window(this.model.attributes));
-      this.$el.trigger('wooccm-tab-panels');
-    }
-  });
-  var FieldViewDatePickerLimit = Backbone.View.extend({
-    templates: {},
-    initialize: function () {
-      this.templates.window = wp.template('wooccm-modal-datepicker-limit');
-    },
-    render: function () {
-      this.$el.html(this.templates.window(this.model.attributes));
-      this.$el.trigger('wooccm-enhanced-between-dates');
-      this.$el.trigger('init_tooltips');
+      //this.$el.trigger('wooccm-tab-panels');
     }
   });
   var FieldViewPanels = Backbone.View.extend({
@@ -72,24 +56,23 @@
   });
   var FieldView = Backbone.View.extend({
     events: {
-      'change input': 'enable',
-      'change textarea': 'enable',
-      'change select': 'enable',
+      'change input': 'enableSave',
+      'change textarea': 'enableSave',
+      'change select': 'enableSave',
       'click .media-modal-backdrop': 'close',
       'click .media-modal-close': 'close',
       'click .media-modal-prev': 'edit',
       'click .media-modal-next': 'edit',
-      'change .media-modal-change': 'change',
+      'click .media-modal-tab': 'tab',
       'change .media-modal-parent': 'parent',
       'change .media-modal-render-tabs': 'renderTabs',
       'change .media-modal-render-panels': 'renderPanels',
       'change .media-modal-render-info': 'renderInfo',
-      'change .media-modal-render-datepicker-limit': 'renderDate',
       'submit .media-modal-form': 'submit',
     },
     templates: {},
     initialize: function () {
-      _.bindAll(this, 'open', 'edit', 'parent', 'change', 'load', 'render', 'close', 'submit');
+      _.bindAll(this, 'tab', 'open', 'edit', 'parent', 'load', 'render', 'close', 'submit');
       this.init();
       this.open();
     },
@@ -100,29 +83,21 @@
       view.setElement(this.$(selector)).render();
     },
     render: function () {
-
       var modal = this;
       modal.$el.html(modal.templates.window(modal.model.attributes));
       this.tabs = new FieldViewTabs({model: modal.model});
       this.panels = new FieldViewPanels({model: modal.model});
-      this.datepickerLimit = new FieldViewDatePickerLimit({model: modal.model});
       this.info = new FieldViewInfo({model: modal.model});
       this.assign(this.tabs, '#wooccm-modal-tabs');
       this.assign(this.panels, '#wooccm-modal-panels');
-      this.assign(this.datepickerLimit, '#wooccm-modal-datepicker-limit');
       this.assign(this.info, '#wooccm-modal-info');
-//      _.delay(function () {
-//        modal.$el.trigger('wooccm-tab-panels');
-//      }, 100);
-
     },
     load: function () {
 
       var modal = this;
-      if (modal.model.attributes.id == undefined) {
-        modal.render();
-        return;
-      }
+
+      block();
+
       $.ajax({
         url: wooccm_field.ajax_url,
         data: {
@@ -133,11 +108,9 @@
         dataType: 'json',
         type: 'POST',
         beforeSend: function () {
-          //block($tr);
         },
         complete: function () {
-          //unblock($tr);
-          //modal.render();
+          unblock();
         },
         error: function () {
           alert('Error!');
@@ -179,55 +152,57 @@
       }, 300);
     },
     open: function (e) {
-
-      this.load();
       $('body').addClass('modal-open').append(this.$el);
+      if (this.model.attributes.id == undefined) {
+        _.delay(function () {
+          unblock();
+        }, 100);
+        return;
+      }
+      this.load();
     },
-    update: function (e) {
-
+    updateModel: function (e) {
       e.preventDefault();
+
       var $field = $(e.target),
               name = $field.attr('name'),
               value = $field.val();
+
       if (e.target.type === 'checkbox') {
         value = $field.prop('checked') === true ? 1 : 0;
       }
-
+      
       this.model.attributes[name] = value;
       this.model.changed[name] = value;
     },
-    change: function (e) {
+    tab: function (e) {
       e.preventDefault();
-      this.update(e);
-      this.enable();
+
+      var modal = this,
+              $modal = modal.$el.find('#wooccm_modal'),
+              $tab = $(e.currentTarget),
+              $tabs = $modal.find('ul.wc-tabs'),
+              panel = $tab.find('a').attr('href').replace('#', '');
+
+      $tabs.find('.active').removeClass('active');
+      $tab.addClass('active');
+
+      this.model.attributes['panel'] = panel;
+      this.model.changed['panel'] = panel;
+
+      this.renderPanels(e);
     },
-    renderTabs: function () {
+    renderTabs: function (e) {
+      this.renderPanels(e);
       this.tabs.render();
     },
-    renderPanels: function () {
+    renderPanels: function (e) {
+      this.updateModel(e);
       this.panels.render();
     },
     renderInfo: function () {
       this.info.render();
     },
-    renderDate: function () {
-      this.assign(this.datepickerLimit, '#wooccm-modal-datepicker-limit');
-      this.datepickerLimit.render();
-    },
-//    table: function (e) {
-//      e.preventDefault();
-//
-//      var $field = $(e.target),
-//              name = $field.attr('name'),
-//              value = $field.val();
-//
-//      if (e.target.type === 'checkbox') {
-//        value = $field.prop('checked') === true ? 1 : 0;
-//      }
-//
-//      //$('tr[data-field_id="' + this.model.attributes.id + '"]').find('td.' + name).html(value);
-//
-//    },
     close: function (e) {
       e.preventDefault();
       this.undelegateEvents();
@@ -240,7 +215,7 @@
       var modal = this,
               $modal = modal.$el.find('#wooccm_modal'),
               $details = $modal.find('.attachment-details');
-      this.update(e);
+      this.updateModel(e);
       $.ajax({
         url: wooccm_field.ajax_url,
         data: {
@@ -251,14 +226,13 @@
         dataType: 'json',
         type: 'POST',
         beforeSend: function () {
-          $('.media-modal-submit').attr('disabled', true);
+          modal.disableSave();
           $details.addClass('save-waiting');
-          //block($details);
         },
         complete: function () {
           $details.addClass('save-complete');
           $details.removeClass('save-waiting');
-          //unblock($details);
+          modal.enableSave();
         },
         error: function () {
           alert('Error!');
@@ -291,14 +265,18 @@
       this.reload(e);
       return;
     },
-    enable: function (e) {
+    enableSave: function (e) {
       $('.media-modal-submit').removeProp('disabled');
+    },
+    disableSave: function (e) {
+      $('.media-modal-submit').prop('disabled', true);
     },
     submit: function (e) {
       e.preventDefault();
       var modal = this,
               $modal = modal.$el.find('#wooccm_modal'),
               $details = $modal.find('.attachment-details');
+
       $.ajax({
         url: wooccm_field.ajax_url,
         data: {
@@ -312,12 +290,12 @@
         beforeSend: function () {
           $('.media-modal-submit').prop('disabled', true);
           $details.addClass('save-waiting');
-          block($modal);
+          block();
         },
         complete: function () {
           $details.addClass('save-complete');
           $details.removeClass('save-waiting');
-          unblock($modal);
+          unblock();
         },
         error: function () {
           alert('Error!');
@@ -356,7 +334,7 @@
       });
       new FieldView({
         model: model
-      });
+      }).render();
     },
   });
   $('#wooccm_billing_settings_add, #wooccm_shipping_settings_add, #wooccm_additional_settings_add').on('click', function (e) {

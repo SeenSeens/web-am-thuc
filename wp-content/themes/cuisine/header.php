@@ -111,7 +111,7 @@
 						<a href="#" class="menu_icon"><i class="fas fa-times"></i></a>
 					</div>
 					<div class="brand_logo text-center">
-						<a href="<?php bloginfo('url'); ?>"><img src="assets/images/logo_3.png" alt=""></a>
+						<a href="<?php bloginfo('url'); ?>"><?php logo(); ?></a>
 					</div>
 					<div class="sidebar_search">
 						<input type="text" placeholder="search here">

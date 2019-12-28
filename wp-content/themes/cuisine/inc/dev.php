@@ -111,25 +111,7 @@ if( !function_exists( 'logo' ) ) :
     }
 endif;
 
-// Menu
-// if( !function_exists( 'menu' ) ) :
-//     function menu() {
-//         wp_nav_menu( [
-//             'theme_location'    =>  'menu-1',
-//             'container'         =>  'nav',
-//             'container_class'   =>  'main_menu',
-//             'menu'              =>  'ul',
-//             'menu_class'        =>  '',
-//             'menu_id'           =>  '',
-//             'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
-//             'walker'            =>  new WP_Bootstrap_Navwalker()
-//         ] );
-//     }
-// endif;
-
-/**
- * Register Custom Navigation Walker
- */
+/** Register Custom Navigation Walker */
 if ( ! file_exists( get_template_directory() . '/inc/wp-bootstrap-navwalker.php' ) ) {
     // File does not exist... return an error.
     return new WP_Error( 'wp-bootstrap-navwalker-missing', __( 'It appears the wp-bootstrap-navwalker.php file may be missing.', 'wp-bootstrap-navwalker' ) );
@@ -158,29 +140,13 @@ if( !function_exists( 'logo_mobile' ) ) :
     }
 endif;
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function cuisine_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer', 'cuisine' ),
-		'id'            => 'sidebar-footer',
-		'description'   => esc_html__( 'Add widgets here.', 'cuisine' ),
-		'before_widget' => '<div class="col-lg-3 col-md-6 col-sm-12">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>',
-	) );
-}
-add_action( 'widgets_init', 'cuisine_widgets_init' );
-
 require_once get_template_directory() . '/widgets/widget_contact_us.php';
 require_once get_template_directory() . '/widgets/widget_opening_hours.php';
 require_once get_template_directory() . '/widgets/widget_latest_news.php';
 require_once get_template_directory() . '/widgets/widget_html.php';
-
+require_once get_template_directory() . '/widgets/home/head.php';
+require_once get_template_directory() . '/widgets/home/about.php';
+require_once get_template_directory() . '/widgets/home/popular.php';
 // Đăng ký 1 kích thước hình ảnh mới
 add_image_size( 'img570-400', 570, 400, true );
 add_image_size( 'img370-270', 370, 270, true );

@@ -4,13 +4,13 @@
  */
 ?>
 <?php get_header(); ?>
-<section class="chopcafe_breadcrumb bg_image" style="background-image: url(/cuisine/wp-content/uploads/2019/12/breadcrumb_bg.jpg);">
+<section class="chopcafe_breadcrumb bg_image" style="background-image: url(<?php echo get_site_url(). '/wp-content/uploads/2019/12/breadcrumb_bg.jpg' ?>);">
     <div class="bg_overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_content text-center">
-                    <h2>Blog 3 Column</h2>
+                    <h2><?php the_title(); ?></h2>
                     <ul>
                         <li><a href="<?php bloginfo( 'url' ); ?>">Home</a></li>
                         <li class="active">Blog</li>

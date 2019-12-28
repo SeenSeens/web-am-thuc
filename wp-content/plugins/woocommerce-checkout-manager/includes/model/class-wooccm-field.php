@@ -82,18 +82,28 @@ class WOOCCM_Field {
 
     return array(
         'heading',
-        'button',
         'message',
+        'button',
         'file',
-        'country',
-        'state'
+//        'country',
+//        'state'
     );
+  }
+
+  public function get_disabled_types() {
+
+    return apply_filters('wooccm_fields_disabled_types', array(
+        'message',
+        'button',
+    ));
   }
 
   public function get_types() {
 
-    return apply_filters('wooccm_fields_fields_types', array(
+    return apply_filters('wooccm_fields_types', array(
         'heading' => 'Heading',
+        'message' => 'Message',
+        'button' => 'Button',
         'text' => 'Text',
         'textarea' => 'Textarea',
         'password' => 'Password',
@@ -108,9 +118,6 @@ class WOOCCM_Field {
         'multicheckbox' => 'Multicheckbox',
         'colorpicker' => 'Colorpicker',
         'file' => 'File',
-            //'button' => 'Button',
-            //'datepicker' => 'Datepicker',
-            //'timepicker' => 'Timepicker',
     ));
   }
 
@@ -126,6 +133,7 @@ class WOOCCM_Field {
         'priority' => null,
         'label' => '',
         'placeholder' => '',
+        'description' => '',
         'default' => '',
         'position' => '',
         'clear' => false,
@@ -140,9 +148,14 @@ class WOOCCM_Field {
             )
         ),
         'required' => false,
+        'message_type' => 'info',
+        'button_type' => '',
+        'button_link' => '',
         'class' => array(),
         // Display
         // -------------------------------------------------------------------
+        'show_cart_minimum' => 0,
+        'show_cart_maximun' => 0,
         'show_role' => array(),
         'hide_role' => array(),
         'more_product' => false,
@@ -154,7 +167,8 @@ class WOOCCM_Field {
         'hide_checkout' => false,
         'hide_email' => false,
         'hide_order' => false,
-        // Timing
+        'hide_invoice' => false,
+        // Pickers
         // -------------------------------------------------------------------
         'time_limit_start' => null,
         'time_limit_end' => null,
@@ -280,28 +294,6 @@ class WOOCCM_Field {
     }
 
     return wp_unslash($field);
-  }
-
-  public function register_wpml_string($value) {
-
-    if (!empty($value) && function_exists('icl_register_string')) {
-
-      if (is_array($value)) {
-
-        foreach ($value as $key => $name) {
-          icl_register_string(WOOCCM_PLUGIN_NAME, $name, $name);
-        }
-
-        return $value;
-      }
-
-      if (is_string($value)) {
-        icl_register_string(WOOCCM_PLUGIN_NAME, $value, $value);
-        return $value;
-      }
-    }
-
-    return $value;
   }
 
   public function get_defaults() {

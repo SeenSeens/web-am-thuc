@@ -264,7 +264,7 @@ msgstr "Ngày đăng"
 msgid "Tags"
 msgstr "Thẻ"
 
-#: template-parts/entry-header.php:36 template-parts/content-cover.php:70
+#: template-parts/content-cover.php:70 template-parts/entry-header.php:36
 #: inc/template-tags.php:389
 msgid "Categories"
 msgstr "Chuyên mục"
@@ -313,7 +313,7 @@ msgstr "Các bình luận trước"
 msgid "Newer Comments"
 msgstr "Các bình luận mới hơn"
 
-#: inc/template-tags.php:555 classes/class-twentytwenty-walker-page.php:134
+#: classes/class-twentytwenty-walker-page.php:134 inc/template-tags.php:555
 msgid "Show sub menu"
 msgstr "Hiển thị menu con"
 

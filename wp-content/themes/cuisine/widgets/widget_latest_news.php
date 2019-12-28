@@ -42,7 +42,7 @@ class Latest_News extends WP_Widget {
                             <h3><a href="#"><?php the_title(); ?></a></h3>
                         </div>
                     </div>
-                    <?php endwhile;  ?>
+                    <?php endwhile; wp_reset_postdata(); ?>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
-<div id="tab_panel_options" class="panel woocommerce_options_panel" style="display: none;">
-  <# if ( _.isObject(data.options)) { #>
-  <div class="options_group">
+<# if ( _.contains(<?php echo json_encode($option); ?>, data.type)) { #>
+<div class="panel woocommerce_options_panel" <# if (data.panel != 'options') { #>hidden<# } #>>
+     <# if ( _.isObject(data.options)) { #>
+     <div class="options_group">
     <table class="wc_gateways widefat wooccm-enhanced-options" style="border:none;box-shadow: none">
       <thead>
         <tr>
@@ -27,7 +28,7 @@
       </thead>
       <tbody class="ui-sortable">
         <# _.each(_.sortOptions(data.options), function (option, index) { #>
-        <tr class="row">
+        <tr>
           <td class="check-column">
             <input class="check" type="checkbox" <# if(index === 0) { #>disabled="disabled"<# } #>/>
           </td>
@@ -71,3 +72,4 @@
   </div>
   <# } #>
 </div>
+<# } #>

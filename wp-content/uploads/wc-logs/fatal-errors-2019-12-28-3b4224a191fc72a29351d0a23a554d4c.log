@@ -1,0 +1,10 @@
+2019-12-28T02:32:38+00:00 CRITICAL syntax error, unexpected '' ?>);">' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home\head.php on line 33
+
+2019-12-28T02:37:39+00:00 CRITICAL syntax error, unexpected '<', expecting end of file in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\template\template-home-2.php on line 8
+
+2019-12-28T02:46:42+00:00 CRITICAL Cannot redeclare cuisine_widgets_init() (previously declared in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php:50) in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php on line 164
+
+2019-12-28T02:46:46+00:00 CRITICAL Cannot redeclare cuisine_widgets_init() (previously declared in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php:50) in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php on line 164
+
+2019-12-28T04:13:34+00:00 CRITICAL syntax error, unexpected '?' in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home\popular.php on line 110
+
