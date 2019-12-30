@@ -30,7 +30,17 @@ class Popular extends WP_Widget {
         			<div class="col-lg-12">
         				<div class="popular_item_slide">
                   <?php
-                  $loop = new WP_Query( ['taxonomy' => 'product_cat', 'post_type' => 'product' , 'tag_ID' => $categories ] );
+                  $loop = new WP_Query( [
+                      'post_type' => 'product',
+                      'posts_per_page' => $number,
+                      'orderby' => 'ID',
+                      'tax_query' => [
+                          [
+                              'taxonomy' => 'product_cat',
+                              'terms' => $categories,
+                          ],
+                      ],
+                  ] );
                   if ($loop->have_posts()) :
                     while($loop->have_posts()) :
                       $loop->the_post();
