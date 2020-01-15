@@ -3,7 +3,7 @@
 class Popular extends WP_Widget {
 
     public function __construct() {
-        parent::__construct( 'popular', 'Mục phổ biến nhất của chúng tôi' );
+        parent::__construct( 'popular', 'Phổ biến nhất' );
         add_action( 'widgets_init', function() { register_widget( 'Popular' ); });
     }
 
@@ -37,6 +37,7 @@ class Popular extends WP_Widget {
                       'tax_query' => [
                           [
                               'taxonomy' => 'product_cat',
+                              'field'   =>  'term_id',
                               'terms' => $categories,
                           ],
                       ],
