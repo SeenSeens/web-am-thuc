@@ -148,6 +148,7 @@ require_once get_template_directory() . '/widgets/home/head.php';
 require_once get_template_directory() . '/widgets/home/about.php';
 require_once get_template_directory() . '/widgets/home/popular.php';
 require_once get_template_directory() . '/widgets/home/features.php';
+require_once get_template_directory() . '/widgets/home/delicious.php';
 
 // Đăng ký 1 kích thước hình ảnh mới
 add_image_size( 'img570-400', 570, 400, true );
