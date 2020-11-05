@@ -3,51 +3,6 @@
  * Kim Bum
  */
 
-// Css
-// if( !function_exists( 'style' ) ) :
-//     function style() {
-//         wp_register_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', 'all' );
-//         wp_enqueue_style( 'bootstrap' );
-//
-//         wp_register_style( 'all', get_template_directory_uri() . '/assets/css/all.css', 'all' );
-//         wp_enqueue_style( 'all' );
-//
-//         wp_register_style( 'flaticon', get_template_directory_uri() . '/assets/css/flaticon.css', 'all' );
-//         wp_enqueue_style( 'flaticon' );
-//
-//         wp_register_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', 'all' );
-//         wp_enqueue_style( 'slick' );
-//
-//         wp_register_style( 'slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css', 'all' );
-//         wp_enqueue_style( 'slick-theme ');
-//
-//         wp_register_style( 'sidebar-menu', get_template_directory_uri() . '/assets/css/sidebar-menu.css', 'all' );
-//         wp_enqueue_style( 'sidebar-menu' );
-//
-//         wp_register_style( 'jquery-ui', get_template_directory_uri() . '/assets/css/jquery-ui.min.css', 'all' );
-//         wp_enqueue_style( 'jquery-ui' );
-//
-//         wp_register_style( 'magnific', get_template_directory_uri() . '/assets/css/magnific-popup.css', 'all' );
-//         wp_enqueue_style( 'magnific' );
-//
-//         wp_register_style( 'nicenumber', get_template_directory_uri() . '/assets/css/nice-number.css', 'all' );
-//         wp_enqueue_style( 'nicenumber' );
-//
-//         wp_register_style( 'niceselect', get_template_directory_uri() . '/assets/css/nice-select.css', 'all' );
-//         wp_enqueue_style( 'niceselect' );
-//
-//         wp_register_style( 'animate', get_template_directory_uri() . '/assets/css/animate.css', 'all' );
-//         wp_enqueue_style( 'animate' );
-//
-//         wp_register_style( 'style', get_template_directory_uri() . '/assets/css/style.css', 'all' );
-//         wp_enqueue_style( 'style' );
-//
-//         wp_register_style( 'responsive', get_template_directory_uri() . '/assets/css/responsive.css', 'all' );
-//         wp_enqueue_style( 'responsive' );
-//     }
-//     add_action( 'wp_enqueue_scripts', 'style' );
-// endif;
-
 // JS
 if( !function_exists( 'script' ) ) :
     function script() {
@@ -144,11 +99,14 @@ require_once get_template_directory() . '/widgets/widget_contact_us.php';
 require_once get_template_directory() . '/widgets/widget_opening_hours.php';
 require_once get_template_directory() . '/widgets/widget_latest_news.php';
 require_once get_template_directory() . '/widgets/widget_html.php';
-require_once get_template_directory() . '/widgets/home/head.php';
-require_once get_template_directory() . '/widgets/home/about.php';
-require_once get_template_directory() . '/widgets/home/popular.php';
-require_once get_template_directory() . '/widgets/home/features.php';
-require_once get_template_directory() . '/widgets/home/delicious.php';
+require_once get_template_directory() . '/widgets/home2/head.php';
+require_once get_template_directory() . '/widgets/home2/about.php';
+require_once get_template_directory() . '/widgets/home2/popular.php';
+require_once get_template_directory() . '/widgets/home2/features.php';
+require_once get_template_directory() . '/widgets/home2/delicious.php';
+require_once get_template_directory() . '/widgets/home2/reservations.php';
+require_once get_template_directory() . '/widgets/home2/news.php';
+require_once get_template_directory() . '/widgets/home2/chefs.php';
 
 // Đăng ký 1 kích thước hình ảnh mới
 add_image_size( 'img570-400', 570, 400, true );
@@ -191,7 +149,7 @@ function wpdocs_excerpt_more( $more ) {
 add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
 
 function wpdocs_custom_excerpt_length( $length ) {
-    return 5;
+    return 20;
 }
 add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
 
@@ -210,9 +168,109 @@ function wpbeginner_numeric_posts_nav($custom_query = null, $paged = null) {
         'current' => max( 1, $paged ),
         'total' => $total,
         'mid_size' => '10', // Số trang hiển thị khi có nhiều trang trước khi hiển thị ...
-        //'prev_text'    => __('&larr;','cuisine'),
-        //'next_text'    => __('&rarr;','cuisine'),
+        'prev_text'    => __('&larr;','cuisine'),
+        'next_text'    => __('&rarr;','cuisine'),
         'type'         => 'list',
     ) );
     if($total > 1) echo '</div>';
 }
+
+
+// Chức năng: hiển thị phân trang cho sản phẩm WooCommerce khi dùng shortcode riêng lẻ
+
+if ( ! is_admin() ) {
+// ---------------------- FRONTPAGE -------------------
+
+if ( defined('WC_VERSION') ) {
+// ---------------------- WooCommerce active -------------------
+  
+
+    /**
+    * Set Pagination for shortcodes custom loop on single-pages.
+    * @uses $woocommerce_loop;
+    */
+    add_action( 'pre_get_posts', 'kli_wc_pre_get_posts_query' ); 
+    function kli_wc_pre_get_posts_query( $query ) {
+        global $woocommerce_loop;
+    
+        // Get paged from main query only
+        // ! frontpage missing the post_type
+        if ( is_main_query() && ( $query->query['post_type'] == 'product' ) || ! isset( $query->query['post_type'] ) ){
+      
+          if ( isset($query->query['paged']) ){
+            $woocommerce_loop['paged'] = $query->query['paged'];
+          }
+        }
+      
+        if ( ! $query->is_post_type_archive || $query->query['post_type'] !== 'product' ){
+            return;
+        }
+        
+        $query->is_paged = true;
+        $query->query['paged'] = $woocommerce_loop['paged'];
+        $query->query_vars['paged'] = $woocommerce_loop['paged'];
+    }
+  
+    /** Prepare Pagination data for shortcodes on pages
+    * @uses $woocommerce_loop;
+    **/
+    add_action( 'loop_end', 'kli_query_loop_end' ); 
+    function kli_query_loop_end( $query ) {
+        
+        if ( ! $query->is_post_type_archive || $query->query['post_type'] !== 'product' ){
+            return;
+        }
+        
+        // Cache data for pagination
+        global $woocommerce_loop;
+        $woocommerce_loop['pagination']['paged'] = $woocommerce_loop['paged'];
+        $woocommerce_loop['pagination']['found_posts'] = $query->found_posts;
+        $woocommerce_loop['pagination']['max_num_pages'] = $query->max_num_pages;
+        $woocommerce_loop['pagination']['post_count'] = $query->post_count;
+        $woocommerce_loop['pagination']['current_post'] = $query->current_post;
+
+    }
+
+
+    /**
+    * Pagination for shortcodes on single-pages 
+    * @uses $woocommerce_loop;
+    */
+    add_action( 'woocommerce_after_template_part', 'kli_wc_shortcode_pagination' ); 
+    function kli_wc_shortcode_pagination( $template_name ) {
+
+        if ( ! ( $template_name === 'loop/loop-end.php' && is_page() ) ){
+            return;
+        }
+
+        global $wp_query, $woocommerce_loop;
+
+        if ( ! isset( $woocommerce_loop['pagination'] ) ){
+            return;
+        }
+
+        $wp_query->query_vars['paged'] = $woocommerce_loop['pagination']['paged'];
+        $wp_query->query['paged'] = $woocommerce_loop['pagination']['paged'];
+        $wp_query->max_num_pages = $woocommerce_loop['pagination']['max_num_pages'];
+        $wp_query->found_posts = $woocommerce_loop['pagination']['found_posts'];
+        $wp_query->post_count = $woocommerce_loop['pagination']['post_count'];
+        $wp_query->current_post = $woocommerce_loop['pagination']['current_post'];
+ 
+        // Custom pagination function or default woocommerce_pagination()
+        kli_woocommerce_pagination();
+    }   
+
+    /**
+    * Custom pagination for WooCommerce instead the default woocommerce_pagination()
+    * @uses plugin Prime Strategy Page Navi, but added is_singular() on #line16
+    **/
+    remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
+    add_action( 'woocommerce_after_shop_loop', 'kli_woocommerce_pagination', 10);
+    function kli_woocommerce_pagination() {
+        woocommerce_pagination(); 
+    }
+
+
+
+}/*woocommerce*/
+}/*frontpage*/

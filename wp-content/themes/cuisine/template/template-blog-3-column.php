@@ -27,7 +27,6 @@
       $loop = new WP_Query([
         'taxonomy' => 'category',
         'post_type' => 'post',
-        'category__not_in' => [24, 28],
       ]);
       if($loop->have_posts()) :
       ?>
@@ -77,6 +76,7 @@
                             <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
                         </ul>
                     </div> -->
+                    <?php pagination(); ?>
                     <?php wpbeginner_numeric_posts_nav(); ?>
                 </div>
             </div>

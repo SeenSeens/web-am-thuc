@@ -1,5 +1,5 @@
 <ul class="wc-tabs">
-  <li class="media-modal-tab" class="active">
+  <li class="media-modal-tab active">
     <a href="#general"><span><?php esc_html_e('General', 'woocommerce-checkout-manager'); ?></span></a>
   </li>
   <# if ( _.contains(<?php echo json_encode(array('select', 'multiselect')); ?>, data.type)) { #>
@@ -33,7 +33,7 @@
     <a href="#datepicker"><span><?php esc_html_e('Datepicker', 'woocommerce-checkout-manager'); ?></span></a>
   </li>
   <# } #>
-  <# if ( !_.contains(<?php echo json_encode(array_merge($option, $template)); ?>, data.type)) { #>
+  <# if ( !_.contains(<?php echo json_encode($template); ?>, data.type)) { #>
   <li class="media-modal-tab">
     <a href="#admin"><span><?php esc_html_e('Admin', 'woocommerce-checkout-manager'); ?></span></a>
   </li>

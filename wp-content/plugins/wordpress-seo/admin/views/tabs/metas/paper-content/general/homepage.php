@@ -10,7 +10,7 @@
 ?>
 <div class="tab-block">
 	<?php
-	if ( 'posts' === get_option( 'show_on_front' ) ) {
+	if ( get_option( 'show_on_front' ) === 'posts' ) {
 		$homepage_help = new WPSEO_Admin_Help_Panel(
 			'search-appearance-homepage',
 			__( 'Learn more about the homepage setting', 'wordpress-seo' ),
@@ -18,7 +18,9 @@
 			'has-wrapper'
 		);
 
+		// phpcs:ignore WordPress.Security.EscapeOutput -- get_button_html() output is properly escaped.
 		echo '<h2 class="help-button-inline">', esc_html__( 'Homepage', 'wordpress-seo' ), $homepage_help->get_button_html(), '</h2>';
+		// phpcs:ignore WordPress.Security.EscapeOutput -- get_panel_html() output is properly escaped.
 		echo $homepage_help->get_panel_html();
 
 		$editor = new WPSEO_Replacevar_Editor(

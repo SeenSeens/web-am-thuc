@@ -1,5 +1,5 @@
 <# if ( _.contains(<?php echo json_encode($option); ?>, data.type)) { #>
-<div class="panel woocommerce_options_panel" <# if (data.panel != 'options') { #>hidden<# } #>>
+<div class="panel woocommerce_options_panel <# if (data.panel != 'options') { #>hidden<# } #>">
      <# if ( _.isObject(data.options)) { #>
      <div class="options_group">
     <table class="wc_gateways widefat wooccm-enhanced-options" style="border:none;box-shadow: none">
@@ -47,9 +47,9 @@
           </td>
           <td>
             <# if ( _.contains(<?php echo json_encode($multiple); ?>, data.type)) { #>
-            <input value="{{index}}" type="checkbox" name="options[{{index}}][default]" <# if (option.default) { #>checked="checked"<# } #> />
+            <input value="{{option.label}}" type="checkbox" name="options[{{index}}][default]" <# if (option.default) { #>checked="checked"<# } #> />
                    <# } else { #>
-                   <input value="{{index}}"  type="radio" name="default" <# if (data.default == index) { #>checked="checked"<# } #> />
+                   <input value="{{option.label}}" type="radio" name="default" <# if (data.default == option.label) { #>checked="checked"<# } #> />
                    <# } #>
           </td>
           <td class="sort ui-sortable-handle">

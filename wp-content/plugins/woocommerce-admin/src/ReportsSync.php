@@ -1,8 +1,6 @@
 <?php
 /**
  * Report table sync related functions and actions.
- *
- * @package WooCommerce Admin/Classes
  */
 
 namespace Automattic\WooCommerce\Admin;
@@ -11,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Admin\Schedulers\CustomersScheduler;
 use Automattic\WooCommerce\Admin\Schedulers\OrdersScheduler;
+use Automattic\WooCommerce\Admin\Schedulers\ImportScheduler;
 
 /**
  * ReportsSync Class.
@@ -85,6 +84,14 @@ class ReportsSync {
 			$scheduler::schedule_action( 'import_batch_init', array( $days, $skip_existing ) );
 		}
 
+		/**
+		 * Fires when report data regeneration begins.
+		 *
+		 * @param int|bool $days Number of days to import.
+		 * @param bool     $skip_existing Skip exisiting records.
+		 */
+		do_action( 'woocommerce_analytics_regenerate_init', $days, $skip_existing );
+
 		return __( 'Report table data is being rebuilt.  Please allow some time for data to fully populate.', 'woocommerce-admin' );
 	}
 
@@ -95,7 +102,7 @@ class ReportsSync {
 	 * @param bool     $skip_existing Skip exisiting records.
 	 */
 	public static function reset_import_stats( $days, $skip_existing ) {
-		$import_stats = get_option( 'wc_admin_import_stats', array() );
+		$import_stats = get_option( ImportScheduler::IMPORT_STATS_OPTION, array() );
 		$totals       = self::get_import_totals( $days, $skip_existing );
 
 		foreach ( self::get_schedulers() as $scheduler ) {
@@ -111,7 +118,7 @@ class ReportsSync {
 			$import_stats['imported_from'] = $current_import_date;
 		}
 
-		update_option( 'wc_admin_import_stats', $import_stats );
+		update_option( ImportScheduler::IMPORT_STATS_OPTION, $import_stats );
 	}
 
 	/**
@@ -120,7 +127,7 @@ class ReportsSync {
 	 * @return array
 	 */
 	public static function get_import_stats() {
-		$import_stats                 = get_option( 'wc_admin_import_stats', array() );
+		$import_stats                 = get_option( ImportScheduler::IMPORT_STATS_OPTION, array() );
 		$import_stats['is_importing'] = self::is_importing();
 
 		return $import_stats;
@@ -167,7 +174,7 @@ class ReportsSync {
 		}
 
 		// Delete import options.
-		delete_option( 'wc_admin_import_stats' );
+		delete_option( ImportScheduler::IMPORT_STATS_OPTION );
 
 		return __( 'Report table data is being deleted.', 'woocommerce-admin' );
 	}

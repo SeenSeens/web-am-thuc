@@ -26,8 +26,10 @@ class Latest_News extends WP_Widget {
                     $query = new WP_Query([
                       'taxonomy'	=> 'category',
                       'post_type' => 'post',
-                      'posts_per_page' => 3,
-                      'orderby' =>  'ID'
+                      'posts_per_page' => 5,
+                      'orderby' =>  'ID',
+                      'cat' => 1,
+
                     ]);
                     while($query->have_posts()) :
                         $query->the_post();

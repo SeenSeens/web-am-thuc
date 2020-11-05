@@ -11,7 +11,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome_content">
-                            <h1>Welcome To <span>Chopcafe</span></h1>
+                            <h1>Chào mừng bạn đến với <span>Chopcafe</span></h1>
                             <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
                             <a href="reservation.html" class="chopcafe_btn reservation_btn">reservation</a>
                         </div>
@@ -27,7 +27,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome_content">
-                            <h1>Welcome To <span>Chopcafe</span></h1>
+                            <h1>Chào mừng bạn đến với <span>Chopcafe</span></h1>
                             <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
                             <a href="reservation-2.html" class="chopcafe_btn reservation_btn">reservation</a>
                         </div>

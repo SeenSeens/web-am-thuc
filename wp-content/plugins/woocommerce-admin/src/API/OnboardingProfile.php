@@ -3,8 +3,6 @@
  * REST API Onboarding Profile Controller
  *
  * Handles requests to /onboarding/profile
- *
- * @package WooCommerce Admin/API
  */
 
 namespace Automattic\WooCommerce\Admin\API;
@@ -16,7 +14,6 @@ use Automattic\WooCommerce\Admin\Features\Onboarding;
 /**
  * Onboarding Profile controller.
  *
- * @package WooCommerce Admin/API
  * @extends WC_REST_Data_Controller
  */
 class OnboardingProfile extends \WC_REST_Data_Controller {
@@ -102,7 +99,7 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 	public function get_items( $request ) {
 		include_once WC_ABSPATH . 'includes/admin/helper/class-wc-helper-options.php';
 
-		$onboarding_data = get_option( 'wc_onboarding_profile', array() );
+		$onboarding_data = get_option( Onboarding::PROFILE_DATA_OPTION, array() );
 		$item_schema     = $this->get_item_schema();
 
 		$items = array();
@@ -128,8 +125,8 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 	public function update_items( $request ) {
 		$params          = $request->get_json_params();
 		$query_args      = $this->prepare_objects_query( $params );
-		$onboarding_data = get_option( 'wc_onboarding_profile', array() );
-		update_option( 'wc_onboarding_profile', array_merge( $onboarding_data, $query_args ) );
+		$onboarding_data = get_option( Onboarding::PROFILE_DATA_OPTION, array() );
+		update_option( Onboarding::PROFILE_DATA_OPTION, array_merge( $onboarding_data, $query_args ) );
 
 		$result = array(
 			'status'  => 'success',
@@ -209,6 +206,13 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'readonly'          => true,
 				'validate_callback' => 'rest_validate_request_arg',
 			),
+			'skipped'             => array(
+				'type'              => 'boolean',
+				'description'       => __( 'Whether or not the profile was skipped.', 'woocommerce-admin' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+			),
 			'plugins'             => array(
 				'type'              => 'string',
 				'description'       => __( 'How the Jetpack/WooCommerce Services step was handled.', 'woocommerce-admin' ),
@@ -240,11 +244,9 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'description'       => __( 'Industry.', 'woocommerce-admin' ),
 				'context'           => array( 'view' ),
 				'readonly'          => true,
-				'sanitize_callback' => 'wp_parse_slug_list',
 				'validate_callback' => 'rest_validate_request_arg',
 				'items'             => array(
-					'enum' => array_keys( Onboarding::get_allowed_industries() ),
-					'type' => 'string',
+					'type' => 'object',
 				),
 			),
 			'product_types'       => array(
@@ -313,8 +315,19 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 					'bigcommerce',
 					'magento',
 					'wix',
+					'amazon',
+					'ebay',
+					'etsy',
+					'squarespace',
 					'other',
 				),
+			),
+			'other_platform_name' => array(
+				'type'              => 'string',
+				'description'       => __( 'Name of other platform used to sell (not listed).', 'woocommerce-admin' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'business_extensions' => array(
 				'type'              => 'array',
@@ -324,7 +337,14 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'sanitize_callback' => 'wp_parse_slug_list',
 				'validate_callback' => 'rest_validate_request_arg',
 				'items'             => array(
-					'enum' => array( 'mailchimp-for-woocommerce', 'facebook-for-woocommerce' ),
+					'enum' => array(
+						'jetpack',
+						'woocommerce-services',
+						'woocommerce-payments',
+						'mailchimp-for-woocommerce',
+						'facebook-for-woocommerce',
+						'kliken-marketing-for-google',
+					),
 					'type' => 'string',
 				),
 			),

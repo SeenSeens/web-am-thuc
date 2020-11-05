@@ -1,5 +1,5 @@
-  <# if (data.type == 'time') { #>
-<div class="panel woocommerce_options_panel" <# if (data.panel != 'timepicker') { #>hidden<# } #>>
+<# if (data.type == 'time') { #>
+<div class="panel woocommerce_options_panel <# if (data.panel != 'timepicker') { #>hidden<# } #>">
   <div class="options_group wooccm-premium">
     <p class="form-field">
       <label><?php esc_html_e('Enhance', 'woocommerce-checkout-manager'); ?></label>
@@ -11,12 +11,12 @@
   <div class="options_group wooccm-premium">
     <p class="form-field">
       <label><?php esc_html_e('Hour start', 'woocommerce-checkout-manager'); ?></label>
-      <input <# if ( !data.select2 ) { #>disabled="disabled"<# } #> class="short" type="number" min="0" max="24" placeholder="6" name="time_limit_start" value="{{data.time_limit_start}}">
+      <input <# if ( !data.select2 ) { #>disabled="disabled"<# } #> class="short" type="number" min="0" max="24" placeholder="6" step="1" name="time_limit_start" value="{{data.time_limit_start}}">
       <span class="description premium">(<?php esc_html_e('This is a premium feature', 'woocommerce-checkout-manager'); ?>)</span>
     </p>
     <p class="form-field">
       <label><?php esc_html_e('Hour end', 'woocommerce-checkout-manager'); ?></label>
-      <input <# if ( !data.select2 ) { #>disabled="disabled"<# } #> class="short" type="number" min="0" max="24" placeholder="9" name="time_limit_end" value="{{data.time_limit_end}}">
+      <input <# if ( !data.select2 ) { #>disabled="disabled"<# } #> class="short" type="number" min="0" max="24" placeholder="9" step="1" name="time_limit_end" value="{{data.time_limit_end}}">
       <span class="description premium">(<?php esc_html_e('This is a premium feature', 'woocommerce-checkout-manager'); ?>)</span>
     </p>
     <p class="form-field">

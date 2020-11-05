@@ -31,3 +31,4 @@ defined( 'ABSPATH' ) || exit;
 <body class="wc-auth wp-core-ui">
 	<h1 id="wc-logo"><img src="<?php echo esc_url( WC()->plugin_url() ); ?>/assets/images/woocommerce_logo.png" alt="<?php esc_attr_e( 'WooCommerce', 'woocommerce' ); ?>" /></h1>
 	<div class="wc-auth-content">
+		

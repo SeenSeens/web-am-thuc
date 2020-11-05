@@ -1,8 +1,6 @@
 <?php
 /**
  * API\Reports\Categories\DataStore class file.
- *
- * @package WooCommerce Admin/Classes
  */
 
 namespace Automattic\WooCommerce\Admin\API\Reports\Categories;
@@ -94,7 +92,9 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 		// join wp_order_product_lookup_table with relationships and taxonomies
 		// @todo How to handle custom product tables?
 		$this->subquery->add_sql_clause( 'left_join', "LEFT JOIN {$wpdb->term_relationships} ON {$order_product_lookup_table}.product_id = {$wpdb->term_relationships}.object_id" );
-		$this->subquery->add_sql_clause( 'left_join', "LEFT JOIN {$wpdb->wc_category_lookup} ON {$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->wc_category_lookup}.category_id" );
+		// Adding this (inner) JOIN as a LEFT JOIN for ordering purposes. See comment in add_order_by_params().
+		$this->subquery->add_sql_clause( 'left_join', "JOIN {$wpdb->term_taxonomy} ON {$wpdb->term_taxonomy}.term_taxonomy_id = {$wpdb->term_relationships}.term_taxonomy_id" );
+		$this->subquery->add_sql_clause( 'left_join', "LEFT JOIN {$wpdb->wc_category_lookup} ON {$wpdb->term_taxonomy}.term_id = {$wpdb->wc_category_lookup}.category_id" );
 
 		$included_categories = $this->get_included_categories( $query_args );
 		if ( $included_categories ) {
@@ -133,7 +133,11 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 		if ( false !== strpos( $order_by_clause, '_terms' ) ) {
 			$join = "JOIN {$wpdb->terms} AS _terms ON {$id_cell} = _terms.term_id";
 			if ( 'inner' === $from_arg ) {
-				$this->subquery->add_sql_clause( 'join', $join );
+				// Even though this is an (inner) JOIN, we're adding it as a `left_join` to
+				// affect its order in the query statement. The SqlQuery::$sql_filters variable
+				// determines the order in which joins are concatenated.
+				// See: https://github.com/woocommerce/woocommerce-admin/blob/1f261998e7287b77bc13c3d4ee2e84b717da7957/src/API/Reports/SqlQuery.php#L46-L50.
+				$this->subquery->add_sql_clause( 'left_join', $join );
 			} else {
 				$this->add_sql_clause( 'join', $join );
 			}

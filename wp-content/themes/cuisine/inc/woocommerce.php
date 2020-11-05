@@ -64,16 +64,15 @@ if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
 if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
     function woocommerce_get_product_thumbnail( $size = 'shop_catalog' ) {
         global $post, $woocommerce, $thumb;
-
-				echo '<div class="chopcafe_img">
-						    <img src="'.$thumb[0].'" class="img-fluid" alt="">
-						    <div class="overlay_img"></div>
-						    <div class="overlay_content">
-						        <a href="'.$thumb[0].'" class="btn_a btn_zoom"><i class="fas fa-search"></i></a>
-						        <a href="'.get_the_permalink().'" class="btn_a btn_link"><i class="fas fa-link"></i></a>
-						        <a href="#" class="btn_a btn_heart"><i class="fas fa-heart"></i></a>
-						    </div>
-						</div>';
+		echo '<div class="chopcafe_img">
+				    <img src="'.$thumb[0].'" class="img-fluid" alt="">
+				    <div class="overlay_img"></div>
+				    <div class="overlay_content">
+				        <a href="'.$thumb[0].'" class="btn_a btn_zoom"><i class="fas fa-search"></i></a>
+				        <a href="'.get_the_permalink().'" class="btn_a btn_link"><i class="fas fa-link"></i></a>
+				        <a href="#" class="btn_a btn_heart"><i class="fas fa-heart"></i></a>
+				    </div>
+				</div>';
     }
 }
 remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
@@ -83,13 +82,6 @@ function woocommerce_template_loop_product_title() {
 	global $price;
 	echo '<div class="chopcafe_info">
 					<h3><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3>
-					<ul class="rating">
-							<li><i class="fas fa-star"></i></li>
-							<li><i class="fas fa-star"></i></li>
-							<li><i class="fas fa-star"></i></li>
-							<li><i class="fas fa-star"></i></li>
-							<li><i class="fas fa-star"></i></li>
-					</ul>
 					<p>'.$price.'</p>
 				</div>';
 }

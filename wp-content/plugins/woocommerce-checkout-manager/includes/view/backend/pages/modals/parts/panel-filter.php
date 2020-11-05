@@ -1,4 +1,4 @@
-<div class="panel woocommerce_options_panel" <# if (data.panel != 'filter') { #>hidden<# } #>>
+<div class="panel woocommerce_options_panel <# if (data.panel != 'filter') { #>hidden<# } #>">
   <div class="options_group wooccm-premium wooccm-enhanced-between-days">
     <p class="form-field dimensions_field">
       <label><?php esc_html_e('Cart subtotal', 'woocommerce-checkout-manager'); ?></label>
@@ -61,7 +61,7 @@
       <select class="wooccm-enhanced-select" name="show_product_cat[]" data-placeholder="<?php esc_attr_e('Filter by categories', 'woocommerce-checkout-manager'); ?>" data-selected="{{data.show_product_cat}}" data-allow_clear="true" multiple="multiple">
         <?php if ($product_categories) : ?>
           <?php foreach ($product_categories as $category): ?>
-            <option <# if ( _.contains(data.show_product_cat, '<?php echo esc_attr($category->slug); ?>') ) { #>selected="selected"<# } #> value="<?php echo esc_attr($category->slug); ?>"><?php echo esc_html($category->name); ?></option>
+            <option <# if ( _.contains(data.show_product_cat, '<?php echo esc_attr($category->term_id); ?>') ) { #>selected="selected"<# } #> value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($category->name); ?></option>
           <?php endforeach; ?>
         <?php endif; ?>
       </select>

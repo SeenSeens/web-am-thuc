@@ -47,14 +47,14 @@ get_header();
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-							<?php
-							while ( have_posts() ) :
-								the_post();
-								$id = get_the_ID();
-								$thumb = wp_get_attachment_image_src(get_post_thumbnail_id($id), 'post_thumbnail');
-								get_template_part( 'template-parts/content', get_post_type() );
-							endwhile;
-							?>
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					$id = get_the_ID();
+					$thumb = wp_get_attachment_image_src(get_post_thumbnail_id($id), 'post_thumbnail');
+					get_template_part( 'template-parts/content', get_post_type() );
+				endwhile;
+				?>
             </div>
         </div>
     </div>

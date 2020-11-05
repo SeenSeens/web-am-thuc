@@ -48,10 +48,10 @@ if ( woocommerce_product_loop() ) {
 	if ( wc_get_loop_prop( 'total' ) ) {
 		while ( have_posts() ) {
 			the_post();
-      $id = get_the_ID();
-      $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($id), 'img370-365');
-      $product = wc_get_product( $id );
-      $price = $product->get_price_html();
+      		$id = get_the_ID();
+      		$thumb = wp_get_attachment_image_src(get_post_thumbnail_id($id), 'img370-365');
+      		$product = wc_get_product( $id );
+      		$price = $product->get_price_html();
 			/**
 			 * Hook: woocommerce_shop_loop.
 			 */
@@ -68,6 +68,7 @@ if ( woocommerce_product_loop() ) {
 	 *
 	 * @hooked woocommerce_pagination - 10
 	 */
+	woocommerce_pagination();
 	do_action( 'woocommerce_after_shop_loop' );
 } else {
 	/**

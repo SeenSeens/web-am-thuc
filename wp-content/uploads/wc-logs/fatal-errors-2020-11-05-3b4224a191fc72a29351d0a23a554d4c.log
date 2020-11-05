@@ -1,0 +1,26 @@
+2020-11-05T07:26:55+00:00 CRITICAL Uncaught Error: Class 'My_Widget' not found in /opt/lampp/htdocs/cuisine/wp-includes/class-wp-widget-factory.php:61
+Stack trace:
+#0 /opt/lampp/htdocs/cuisine/wp-includes/widgets.php(115): WP_Widget_Factory->register('My_Widget')
+#1 /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/widgets/home2/chefs.php(10): register_widget('My_Widget')
+#2 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(287): Chefs->{closure}('')
+#3 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#4 /opt/lampp/htdocs/cuisine/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#5 /opt/lampp/htdocs/cuisine/wp-includes/widgets.php(1773): do_action('widgets_init')
+#6 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(287): wp_widgets_init('')
+#7 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#8 /opt/lampp/htdocs/cuisine/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#9 /opt/lampp/htdocs/cuisine/wp-settings.php(546): do_a in /opt/lampp/htdocs/cuisine/wp-includes/class-wp-widget-factory.php on line 61
+
+2020-11-05T07:26:56+00:00 CRITICAL Uncaught Error: Class 'My_Widget' not found in /opt/lampp/htdocs/cuisine/wp-includes/class-wp-widget-factory.php:61
+Stack trace:
+#0 /opt/lampp/htdocs/cuisine/wp-includes/widgets.php(115): WP_Widget_Factory->register('My_Widget')
+#1 /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/widgets/home2/chefs.php(10): register_widget('My_Widget')
+#2 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(287): Chefs->{closure}('')
+#3 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#4 /opt/lampp/htdocs/cuisine/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#5 /opt/lampp/htdocs/cuisine/wp-includes/widgets.php(1773): do_action('widgets_init')
+#6 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(287): wp_widgets_init('')
+#7 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#8 /opt/lampp/htdocs/cuisine/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#9 /opt/lampp/htdocs/cuisine/wp-settings.php(546): do_a in /opt/lampp/htdocs/cuisine/wp-includes/class-wp-widget-factory.php on line 61
+

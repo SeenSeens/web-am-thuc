@@ -133,3 +133,23 @@
 		<!-- End site_menu -->
 	</header>
 	<!-- End header_area -->
+	<?php
+	if(is_page('gio-hang')) {
+	?>
+	<section class="chopcafe_breadcrumb bg_image" style="background-image: url(<?php echo get_site_url() . '/wp-content/uploads/2019/12/breadcrumb_bg.jpg' ?>);">
+	    <div class="bg_overlay"></div>
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-lg-12">
+	                <div class="breadcrumb_content text-center">
+	                    <h2><?php the_title(); ?></h2>
+	                    <ul>
+	                        <li><a href="<?php bloginfo('url'); ?>">Trang chủ</a></li>
+	                        <li class="active"><?php the_title(); ?></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<?php } ?>

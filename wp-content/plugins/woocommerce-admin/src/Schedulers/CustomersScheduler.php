@@ -1,14 +1,13 @@
 <?php
 /**
  * Customer syncing related functions and actions.
- *
- * @package WooCommerce Admin/Classes
  */
 
 namespace Automattic\WooCommerce\Admin\Schedulers;
 
 defined( 'ABSPATH' ) || exit;
 
+use \Automattic\WooCommerce\Admin\API\Reports\Cache as ReportsCache;
 use \Automattic\WooCommerce\Admin\API\Reports\Customers\DataStore as CustomersDataStore;
 use \Automattic\WooCommerce\Admin\Schedulers\OrdersScheduler;
 
@@ -29,6 +28,8 @@ class CustomersScheduler extends ImportScheduler {
 	public static function init() {
 		add_action( 'woocommerce_new_customer', array( __CLASS__, 'schedule_import' ) );
 		add_action( 'woocommerce_update_customer', array( __CLASS__, 'schedule_import' ) );
+		add_action( 'woocommerce_privacy_remove_order_personal_data', array( __CLASS__, 'schedule_anonymize' ) );
+		add_action( 'delete_user', array( __CLASS__, 'schedule_user_delete' ) );
 
 		CustomersDataStore::init();
 		parent::init();
@@ -42,6 +43,8 @@ class CustomersScheduler extends ImportScheduler {
 	public static function get_dependencies() {
 		return array(
 			'delete_batch_init' => OrdersScheduler::get_action( 'delete_batch_init' ),
+			'anonymize'         => self::get_action( 'import' ),
+			'delete_user'       => self::get_action( 'import' ),
 		);
 	}
 
@@ -111,6 +114,19 @@ class CustomersScheduler extends ImportScheduler {
 	}
 
 	/**
+	 * Get all available scheduling actions.
+	 * Used to determine action hook names and clear events.
+	 *
+	 * @return array
+	 */
+	public static function get_scheduler_actions() {
+		$actions                = parent::get_scheduler_actions();
+		$actions['anonymize']   = 'wc-admin_anonymize_' . static::$name;
+		$actions['delete_user'] = 'wc-admin_delete_user_' . static::$name;
+		return $actions;
+	}
+
+	/**
 	 * Schedule import.
 	 *
 	 * @param int $user_id User ID.
@@ -118,6 +134,32 @@ class CustomersScheduler extends ImportScheduler {
 	 */
 	public static function schedule_import( $user_id ) {
 		self::schedule_action( 'import', array( $user_id ) );
+	}
+
+	/**
+	 * Schedule an action to anonymize a single Order.
+	 *
+	 * @param WC_Order $order Order object.
+	 * @return void
+	 */
+	public static function schedule_anonymize( $order ) {
+		if ( is_a( $order, 'WC_Order' ) ) {
+			// Postpone until any pending updates are completed.
+			self::schedule_action( 'anonymize', array( $order->get_id() ) );
+		}
+	}
+
+	/**
+	 * Schedule an action to delete a single User.
+	 *
+	 * @param int $user_id User ID.
+	 * @return void
+	 */
+	public static function schedule_user_delete( $user_id ) {
+		if ( (int) $user_id > 0 ) {
+			// Postpone until any pending updates are completed.
+			self::schedule_action( 'delete_user', array( $user_id ) );
+		}
 	}
 
 	/**
@@ -149,5 +191,67 @@ class CustomersScheduler extends ImportScheduler {
 		foreach ( $customer_ids as $customer_id ) {
 			CustomersDataStore::delete_customer( $customer_id );
 		}
+	}
+
+	/**
+	 * Anonymize the customer data for a single order.
+	 *
+	 * @param int $order_id Order id.
+	 * @return void
+	 */
+	public static function anonymize( $order_id ) {
+		global $wpdb;
+
+		$customer_id = $wpdb->get_var(
+			$wpdb->prepare( "SELECT customer_id FROM {$wpdb->prefix}wc_order_stats WHERE order_id = %d", $order_id )
+		);
+
+		if ( ! $customer_id ) {
+			return;
+		}
+
+		// Long form query because $wpdb->update rejects [deleted].
+		$deleted_text = __( '[deleted]', 'woocommerce-admin' );
+		$updated      = $wpdb->query(
+			$wpdb->prepare(
+				"UPDATE {$wpdb->prefix}wc_customer_lookup
+					SET
+						user_id = NULL,
+						username = %s,
+						first_name = %s,
+						last_name = %s,
+						email = %s,
+						country = '',
+						postcode = %s,
+						city = %s,
+						state = %s
+					WHERE
+						customer_id = %d",
+				array(
+					$deleted_text,
+					$deleted_text,
+					$deleted_text,
+					'deleted@site.invalid',
+					$deleted_text,
+					$deleted_text,
+					$deleted_text,
+					$customer_id,
+				)
+			)
+		);
+		// If the customer row was anonymized, flush the cache.
+		if ( $updated ) {
+			ReportsCache::invalidate();
+		}
+	}
+
+	/**
+	 * Delete the customer data for a single user.
+	 *
+	 * @param int $user_id User ID.
+	 * @return void
+	 */
+	public static function delete_user( $user_id ) {
+		CustomersDataStore::delete_customer_by_user_id( $user_id );
 	}
 }

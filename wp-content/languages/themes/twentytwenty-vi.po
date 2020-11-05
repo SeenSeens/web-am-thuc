@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: vi_VN\n"
 "Project-Id-Version: Themes - Twenty Twenty\n"
 
@@ -73,10 +73,6 @@ msgstr "Vì sao"
 msgid "October 1 -- December 1"
 msgstr "Người ta khổ vì thương không phải cách; Yêu sai duyên, và mến chẳng nhằm người."
 
-#: inc/starter-content.php:129
-msgid "”Cyborgs, as the philosopher Donna Haraway established, are not reverent. They do not remember the cosmos.”"
-msgstr "”Kẻ chiến thắng không bao giờ bỏ cuộc; kẻ bỏ cuộc không bao giờ chiến thắng”"
-
 #: inc/starter-content.php:133
 msgid "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
 msgstr "Tuổi trẻ chính là thời điểm thích hợp nhất để biến ước mơ thành hiện thực. Chúng ta có sức khỏe, trí lực, và quan trọng nhất là đủ đam mê để theo đuổi ước mơ của mình. Một trong những lỗi lầm lớn nhất của con người là họ cứ ép mình phải hứng thú với thứ gì đó. Bạn không chọn đam mê của mình; chính đam mê lựa chọn bạn."
@@ -130,11 +126,11 @@ msgstr "Màu nền phủ. Mặc định sử dụng màu phụ."
 msgid "search again"
 msgstr "tìm lại"
 
-#: template-parts/modal-search.php:20 searchform.php:24
+#: searchform.php:24 template-parts/modal-search.php:20
 msgid "Search for:"
 msgstr "Tìm kiếm cho:"
 
-#. translators: %s: Number of search results
+#. translators: %s: Number of search results.
 #: index.php:39
 msgid "We found %s result for your search."
 msgid_plural "We found %s results for your search."
@@ -144,23 +140,23 @@ msgstr[0] "Chúng tôi đã tìm thấy %s kết quả tìm kiếm."
 msgid "404 not found"
 msgstr "404 không có"
 
-#. translators: Copyright date format, see https://secure.php.net/date
+#. translators: Copyright date format, see https://www.php.net/date
 #: footer.php:25
 msgctxt "copyright date format"
 msgid "Y"
 msgstr "Y"
 
-#. translators: %s: HTML character for up arrow
+#. translators: %s: HTML character for up arrow.
 #: footer.php:49
 msgid "Up %s"
 msgstr "Lên  trên %s"
 
-#. translators: %s: HTML character for up arrow
+#. translators: %s: HTML character for up arrow.
 #: footer.php:43
 msgid "To the top %s"
 msgstr "Lên trên cùng %s"
 
-#. Translators: 1 = comment date, 2 = comment time
+#. translators: 1: Comment date, 2: Comment time.
 #: classes/class-twentytwenty-walker-comment.php:69
 msgid "%1$s at %2$s"
 msgstr "%1$s vào lúc %2$s"
@@ -177,13 +173,13 @@ msgstr "Bình luận của bạn cần chờ duyệt."
 msgid "Leave a comment"
 msgstr "Gửi bình luận"
 
-#. translators: %s: post title
+#. translators: %s: Post title.
 #: comments.php:37
 msgctxt "comments title"
 msgid "One reply on &ldquo;%s&rdquo;"
 msgstr "Một bình luận trong &ldquo;%s&rdquo;"
 
-#. translators: 1: number of comments, 2: post title
+#. translators: 1: Number of comments, 2: Post title.
 #: comments.php:41
 msgctxt "comments title"
 msgid "%1$s reply on &ldquo;%2$s&rdquo;"
@@ -198,7 +194,7 @@ msgstr "Bình luận"
 msgid "Comments are closed."
 msgstr "Không cho phép bình luận."
 
-#: functions.php:491 inc/starter-content.php:176 inc/starter-content.php:186
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:492
 msgid "Primary"
 msgstr "Chính"
 
@@ -211,11 +207,11 @@ msgstr "Menu mạng xã hội"
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Sửa <span class=\"screen-reader-text\">%s</span>"
 
-#: functions.php:258
+#: functions.php:261
 msgid "Footer Menu"
 msgstr "Menu cuối trang"
 
-#: template-parts/content.php:48 template-parts/content-cover.php:138
+#: template-parts/content-cover.php:138 template-parts/content.php:48
 msgid "Pages:"
 msgstr "Trang:"
 
@@ -223,11 +219,11 @@ msgstr "Trang:"
 msgid "Footer"
 msgstr "Cuối trang"
 
-#: template-parts/content.php:48 template-parts/content-cover.php:138
+#: template-parts/content-cover.php:138 template-parts/content.php:48
 msgid "Page"
 msgstr "Trang"
 
-#: functions.php:496
+#: functions.php:497
 msgid "Secondary"
 msgstr "Phụ"
 
@@ -247,7 +243,7 @@ msgstr "Tìm kiếm"
 msgid "Continue reading"
 msgstr "Chi tiết"
 
-#: functions.php:548
+#: functions.php:549
 msgctxt "Short name of the larger font size in the block editor."
 msgid "XL"
 msgstr "XL"
@@ -264,8 +260,8 @@ msgstr "Ngày đăng"
 msgid "Tags"
 msgstr "Thẻ"
 
-#: template-parts/content-cover.php:70 template-parts/entry-header.php:36
-#: inc/template-tags.php:389
+#: inc/template-tags.php:389 template-parts/entry-header.php:36
+#: template-parts/content-cover.php:70
 msgid "Categories"
 msgstr "Chuyên mục"
 
@@ -277,27 +273,27 @@ msgstr "Chúng tôi không tìm thấy bất kỳ kết quả nào. Bạn có th
 msgid "Horizontal"
 msgstr "Ngang"
 
-#: functions.php:375
+#: functions.php:378
 msgid "Footer #2"
 msgstr "Footer #2"
 
-#: functions.php:365
+#: functions.php:368
 msgid "Widgets in this area will be displayed in the first column in the footer."
 msgstr "Widget tại vị trí này sẽ hiển thị ở cột đầu tiên ở footer."
 
-#: functions.php:363
+#: functions.php:366
 msgid "Footer #1"
 msgstr "Footer #1"
 
-#: functions.php:338
+#: functions.php:341
 msgid "Skip to the content"
 msgstr "Chuyển đến nội dung"
 
-#: functions.php:259
+#: functions.php:262
 msgid "Social Menu"
 msgstr "Social Menu"
 
-#: functions.php:257
+#: functions.php:260
 msgid "Mobile Menu"
 msgstr "Menu di động"
 
@@ -313,12 +309,12 @@ msgstr "Các bình luận trước"
 msgid "Newer Comments"
 msgstr "Các bình luận mới hơn"
 
-#: classes/class-twentytwenty-walker-page.php:134 inc/template-tags.php:555
+#: classes/class-twentytwenty-walker-page.php:107 inc/template-tags.php:555
 msgid "Show sub menu"
 msgstr "Hiển thị menu con"
 
-#. translators: %d: ID of a post
-#: classes/class-twentytwenty-walker-page.php:82
+#. translators: %d: ID of a post.
+#: classes/class-twentytwenty-walker-page.php:70
 msgid "#%d (no title)"
 msgstr "#%d (không đề)"
 
@@ -355,50 +351,50 @@ msgctxt "submit button"
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: functions.php:547
+#: functions.php:548
 msgctxt "Name of the larger font size in the block editor"
 msgid "Larger"
 msgstr "Lớn hơn"
 
-#: functions.php:542
+#: functions.php:543
 msgctxt "Short name of the large font size in the block editor."
 msgid "L"
 msgstr "L"
 
-#: functions.php:541
+#: functions.php:542
 msgctxt "Name of the large font size in the block editor"
 msgid "Large"
 msgstr "Lớn"
 
-#: functions.php:536
+#: functions.php:537
 msgctxt "Short name of the regular font size in the block editor."
 msgid "M"
 msgstr "M"
 
-#: functions.php:535
+#: functions.php:536
 msgctxt "Name of the regular font size in the block editor"
 msgid "Regular"
 msgstr "Bình thường"
 
-#: functions.php:530
+#: functions.php:531
 msgctxt "Short name of the small font size in the block editor."
 msgid "S"
 msgstr "S"
 
-#: functions.php:529
+#: functions.php:530
 msgctxt "Name of the small font size in the block editor"
 msgid "Small"
 msgstr "Nhỏ"
 
-#: functions.php:514
+#: functions.php:515
 msgid "Background Color"
 msgstr "Màu nền"
 
-#: functions.php:501
+#: functions.php:502
 msgid "Subtle Background"
 msgstr "Nền tùy chọn"
 
-#: functions.php:377
+#: functions.php:380
 msgid "Widgets in this area will be displayed in the second column in the footer."
 msgstr "Widget ở vị trí này sẽ hiển thị ở cột thứ hai ở footer."
 
@@ -414,8 +410,8 @@ msgstr "Bài viết"
 msgid "Header &amp; Footer Background Color"
 msgstr "Màu nền Đầu trang &amp; Cuối trang"
 
-#. translators: %s: Author name
-#: template-parts/entry-author-bio.php:20 inc/template-tags.php:354
+#. translators: %s: Author name.
+#: inc/template-tags.php:354 template-parts/entry-author-bio.php:20
 msgid "By %s"
 msgstr "Bởi %s"
 
@@ -452,11 +448,11 @@ msgstr "Giao diện tràn màn hình"
 msgid "Social links"
 msgstr "Mạng xã hội"
 
-#: functions.php:486
+#: functions.php:487
 msgid "Accent Color"
 msgstr "Màu phụ"
 
-#: functions.php:256
+#: functions.php:259
 msgid "Desktop Expanded Menu"
 msgstr "Menu mở rộng trên màn hình máy tính"
 

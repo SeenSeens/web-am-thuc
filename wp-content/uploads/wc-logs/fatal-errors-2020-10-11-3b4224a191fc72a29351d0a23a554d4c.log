@@ -1,0 +1,72 @@
+2020-10-11T04:53:40+00:00 CRITICAL syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\popular.php on line 47
+
+2020-10-11T04:53:44+00:00 CRITICAL syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\popular.php on line 47
+
+2020-10-11T05:34:24+00:00 CRITICAL Uncaught Error: Class 'Reservations' not found in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php:46
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php(152): require_once()
+#1 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php(100): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\wp-settings.php(514): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\cuisine\wp-config.php(91): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\cuisine\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\cuisine\wp-cron.php(44): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php on line 46
+
+2020-10-11T05:34:28+00:00 CRITICAL Uncaught Error: Class 'Reservations' not found in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php:46
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php(152): require_once()
+#1 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php(100): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\wp-settings.php(514): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\cuisine\wp-config.php(91): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\cuisine\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\cuisine\wp-blog-header.php(13): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\cuisine\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php on line 46
+
+2020-10-11T05:35:22+00:00 CRITICAL Uncaught Error: Class 'Reservations' not found in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php:46
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php(152): require_once()
+#1 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php(100): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\wp-settings.php(514): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\cuisine\wp-config.php(91): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\cuisine\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\cuisine\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php on line 46
+
+2020-10-11T05:37:19+00:00 CRITICAL Uncaught Error: Class 'Reservations' not found in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php:46
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php(152): require_once()
+#1 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php(100): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\wp-settings.php(514): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\cuisine\wp-config.php(91): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\cuisine\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\cuisine\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php on line 46
+
+2020-10-11T05:38:19+00:00 CRITICAL Uncaught Error: Class 'Reservations' not found in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php:46
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php(152): require_once()
+#1 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php(100): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\wp-settings.php(514): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\cuisine\wp-config.php(91): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\cuisine\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\cuisine\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php on line 46
+
+2020-10-11T05:38:23+00:00 CRITICAL Uncaught Error: Class 'Reservations' not found in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php:46
+Stack trace:
+#0 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\inc\dev.php(152): require_once()
+#1 C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\functions.php(100): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\cuisine\wp-settings.php(514): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\cuisine\wp-config.php(91): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\cuisine\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\cuisine\wp-blog-header.php(13): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\cuisine\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\cuisine\wp-content\themes\cuisine\widgets\home2\reservations.php on line 46
+
