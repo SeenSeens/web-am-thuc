@@ -22,3 +22,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 http://theme.codeastrology.com/chopcafe
 
 */
+p.form-row-first, p.form-row-last{width:100%}
+.woocommerce-billing-fields input{margin-bottom:0}
+#customer_details label{font-weight: normal; font-size: 15px; color:#950303}

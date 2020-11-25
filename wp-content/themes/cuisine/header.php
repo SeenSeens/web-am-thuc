@@ -134,7 +134,7 @@
 	</header>
 	<!-- End header_area -->
 	<?php
-	if(is_page('gio-hang')) {
+	if(is_page('gio-hang') || is_page( 'thanh-toan' )) {
 	?>
 	<section class="chopcafe_breadcrumb bg_image" style="background-image: url(<?php echo get_site_url() . '/wp-content/uploads/2019/12/breadcrumb_bg.jpg' ?>);">
 	    <div class="bg_overlay"></div>

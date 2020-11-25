@@ -1,0 +1,4 @@
+2020-11-24T16:06:32+00:00 CRITICAL syntax error, unexpected ';' in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/header.php on line 137
+
+2020-11-24T16:33:05+00:00 CRITICAL syntax error, unexpected '3' (T_LNUMBER) in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 139
+

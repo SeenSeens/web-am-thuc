@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * WooCommerce Compatibility File
  *
@@ -87,6 +87,7 @@ function woocommerce_template_loop_product_title() {
 }
 remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+
 add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
 function woocommerce_show_product_images() {
 	echo '<div class="col-lg-6">';
@@ -132,3 +133,9 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
 	}
 	return $currency_symbol;
 }
+// xóa hành động 
+
+// function action_woocommerce_checkout_billing(  ) { 
+//     echo 'sasd'; 
+// }; 
+// add_action ( 'woocommerce_checkout_billing' , 'action_woocommerce_checkout_billing' , 10 , 0 ); 
