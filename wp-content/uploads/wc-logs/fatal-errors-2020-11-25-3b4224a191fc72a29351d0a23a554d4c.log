@@ -1357,3 +1357,13 @@ Stack trace:
 #7 {main}
   thrown in /opt/lampp/htdocs/cuisine/wp-includes/plugin.php on line 583
 
+2020-11-25T11:36:58+00:00 CRITICAL Uncaught Error: Call to undefined function nset() in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php:146
+Stack trace:
+#0 /opt/lampp/htdocs/cuisine/wp-includes/class-wp-hook.php(287): custom_override_checkout_fields(Array)
+#1 /opt/lampp/htdocs/cuisine/wp-includes/plugin.php(206): WP_Hook->apply_filters(Array, Array)
+#2 /opt/lampp/htdocs/cuisine/wp-content/plugins/woocommerce/includes/class-wc-checkout.php(265): apply_filters('woocommerce_che...', Array)
+#3 /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/woocommerce/checkout/form-checkout.php(34): WC_Checkout->get_checkout_fields()
+#4 /opt/lampp/htdocs/cuisine/wp-content/plugins/woocommerce/includes/wc-core-functions.php(344): include('/opt/lampp/htdo...')
+#5 /opt/lampp/htdocs/cuisine/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-checkout.php(293): wc_get_template('checkout/form-c...', Array)
+#6 /opt/lampp/htdocs/cuisine/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-checkout.php(67): WC in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 146
+
