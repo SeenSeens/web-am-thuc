@@ -1367,3 +1367,11 @@ Stack trace:
 #5 /opt/lampp/htdocs/cuisine/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-checkout.php(293): wc_get_template('checkout/form-c...', Array)
 #6 /opt/lampp/htdocs/cuisine/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-checkout.php(67): WC in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 146
 
+2020-11-25T15:02:00+00:00 CRITICAL Cannot redeclare custom_override_checkout_fields() (previously declared in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php:138) in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 158
+
+2020-11-25T15:02:31+00:00 CRITICAL Cannot redeclare custom_override_checkout_fields() (previously declared in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php:138) in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 158
+
+2020-11-25T15:03:55+00:00 CRITICAL Cannot redeclare custom_override_checkout_fields() (previously declared in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php:138) in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 158
+
+2020-11-25T15:03:56+00:00 CRITICAL Cannot redeclare custom_override_checkout_fields() (previously declared in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php:138) in /opt/lampp/htdocs/cuisine/wp-content/themes/cuisine/inc/woocommerce.php on line 158
+

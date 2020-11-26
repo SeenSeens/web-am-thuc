@@ -134,8 +134,8 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
 	return $currency_symbol;
 }
 
-add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields',99 );
-function custom_override_checkout_fields( $fields ) {
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields_dis',99 );
+function custom_override_checkout_fields_dis( $fields ) {
  	//Danh sách field cần xóa ở đây
  	unset($fields['billing']['billing_first_name']);
  	unset($fields['billing']['billing_last_name']);
@@ -150,4 +150,12 @@ function custom_override_checkout_fields( $fields ) {
 	unset($fields['order']['order_comments']);
  
  return $fields;
+}
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+    $fields['billing']['billing_phone']['placeholder'] = 'My new placeholder';
+    return $fields;
 }
